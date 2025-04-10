@@ -9,3 +9,4 @@ langchain-groq
 google-generativeai
 faiss-cpu
 gunicorn
+whitenoise
