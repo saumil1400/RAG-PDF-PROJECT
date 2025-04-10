@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>SmartRAG - Advanced Document Intelligence</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png" type="image/png">
+
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -642,7 +644,7 @@ textarea::placeholder {
 }
 
 #questionInput,.answer-content {
-    font-size: 25px; 
+    font-size: 20px; 
     font-family: 'Arial', serif; 
     font-weight: 500;
     color: #1a1a1a; 
@@ -653,6 +655,30 @@ textarea::placeholder {
     font-family: 'Arial', serif; 
     font-weight: 500;
     color: #1a1a1a; 
+}
+.erase-btn {
+    background: #f1f5f9;
+    color: #64748b;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: auto; /* This will push the button to the right */
+}
+
+.erase-btn:hover {
+    background: #e2e8f0;
+    color: #ef4444;
+}
+
+.erase-btn:active {
+    transform: scale(0.97);
 }
 </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -669,10 +695,16 @@ textarea::placeholder {
                 </div>
             </div>
             <div class="header-actions">
-                <button class="header-button">
-                    <i class="fas fa-book"></i> Platform Tour
-                </button>
+                <a href="https://drive.google.com/file/d/11dJcXmGw945o0OtEej_5y2vQtoXmA_PJ/view?usp=drive_link" 
+                   class="header-button" 
+                   id="platformTourBtn" 
+                   target="_blank">
+                    <button class="header-button">
+                        <i class="fas fa-book"></i> Platform Tour
+                    </button>
+                </a>
             </div>
+            
         </header>
 
         <div class="features">
@@ -733,6 +765,9 @@ textarea::placeholder {
                         <div class="question-box">
                             <label class="question-label" for="questionInput">
                                 <i class="fas fa-question-circle"></i> Enter your question:
+                                <button type="button" id="eraseQuestion" class="erase-btn" title="Clear question">
+                                    <i class="fas fa-eraser"></i> Erase
+                                </button>
                             </label>
                             <textarea 
                                 id="questionInput" 
@@ -872,6 +907,11 @@ textarea::placeholder {
             } else {
                 alert("No AI answer to export.");
             }
+        });
+
+        document.getElementById('eraseQuestion').addEventListener('click', () => {
+            document.getElementById('questionInput').value = '';
+            document.getElementById('questionInput').focus();
         });
     </script>
 </body>
