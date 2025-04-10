@@ -20,7 +20,7 @@
             </div>
             <div class="header-actions">
                 <button class="header-button">
-                    <i class="fas fa-book"></i> Documentation
+                    <i class="fas fa-book"></i> Platform Tour
                 </button>
             </div>
         </header>
@@ -91,8 +91,24 @@
                         </div>
                         <div class="file-info">
                             <i class="fas fa-paperclip file-icon"></i>
-                            <span id="fileStatus">No document selected</span>
+                        
+                            {% if is_file_loaded and file_name %}
+                                <span id="fileStatus"><strong>{{ file_name }}</strong> uploaded</span>
+                                <script>
+                                    // Set tick + green icon if file already uploaded
+                                    window.onload = function () {
+                                        const icon = document.querySelector('.upload-icon');
+                                        icon.classList.remove('fa-cloud-upload-alt', 'pulse');
+                                        icon.classList.add('fa-check-circle');
+                                        icon.style.color = '#10b981';
+                                    };
+                                </script>
+                            {% else %}
+                                <span id="fileStatus">No document selected</span>
+                            {% endif %}
                         </div>
+                        
+                        
                     </div>
                 </div>
 
@@ -110,7 +126,7 @@
                             </div>
                             <div class="answer-content" id="answerContent">
                                 {% if answer %}
-                                    {{ answer }}
+                                     {{ answer|safe }}
                                 {% else %}
                                     Your AI-generated answer will appear here after you submit a question.
                                 {% endif %}
@@ -118,7 +134,12 @@
                         </div>
                         <div class="action-bar">
                             <button type="button" class="copy-btn"><i class="fas fa-copy"></i> Copy</button>
+                           
+                            
                             <button type="button" class="export-btn"><i class="fas fa-download"></i> Export</button>
+                            <button type="submit" name="reset" value="true" class="reset-btn">
+                                <i class="fas fa-undo-alt"></i> Reset
+                            </button>
                             <button type="submit" class="submit-btn"><i class="fas fa-search"></i> Get Answer</button>
                         </div>
                     </div>
@@ -127,7 +148,6 @@
         </form>
     </div>
 
-    <!-- Scripts -->
     <script>
         const dropZone = document.getElementById('dropZone');
         const fileUpload = document.getElementById('fileUpload');
