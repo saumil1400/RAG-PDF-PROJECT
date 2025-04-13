@@ -10,3 +10,4 @@ google-generativeai
 faiss-cpu
 gunicorn
 whitenoise
+django-cors-headers
