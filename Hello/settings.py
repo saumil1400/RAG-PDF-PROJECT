@@ -141,7 +141,3 @@ CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'", "'unsafe-eval'")
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
 
 
-# CSRF settings
-CSRF_COOKIE_HTTPONLY = True
-CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ["*"]
